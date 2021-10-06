@@ -1,0 +1,34 @@
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">Prekiu krepselio sudarymas</div>
+            <div class="card-body">
+                <div class=" mb-3">
+                    <label for="" class="form-label">prekes pavadinimas</label>
+                    <input type="text" class="form-control" [(ngModel)]="pavadinimas">
+                </div>
+                <div class=" mb-3">
+                    <label for="" class="form-label">prekiu kiekis</label>
+                    <input type="text" class="form-control" [(ngModel)]="kiekis">
+                </div>
+                <button class="btn btn-success" (click)="addPreke()" [disabled]="pavadinimas=='' || kiekis =='' ">Prideti preke</button>
+            </div>
+        </div>
+
+        <hr class="mt-3">
+        <div class="col-md-12">
+            <div class="card" *ngIf="prekes.length!=0">
+                <div class="card-header">Pirkiniu krepselis</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let preke of prekes let i=index"> 
+                            {{i+1}}. {{preke.pavadinimas}} {{preke.kiekis}} 
+                            <button class="btn btn-danger float-end" (click)="trinti(i)">Trinti</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

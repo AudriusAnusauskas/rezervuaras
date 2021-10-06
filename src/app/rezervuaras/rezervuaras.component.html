@@ -1,0 +1,55 @@
+<div class="row mt-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">Rezervuaro skaiciuokle</div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="form-label">Rezervuaro talpa (l)</label>
+          <input type="number" class="form-control" [(ngModel)]="talpa" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Rezervuaro pildymo greitis (l/val.)</label>
+          <input type="number" class="form-control" [(ngModel)]="greitis" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Laikas (val.)</label>
+          <input type="number" class="form-control" [(ngModel)]="laikas" />
+        </div>
+        <button class="btn btn-success" (click)="skaiciuoti()">
+          Skaiciuoti
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card" *ngIf="rezultatas != 0; else instrukcijos">
+      <div class="card-header">Skaiciavimu rezultatai</div>
+      <div class="card-body">
+        <div
+          class="alert"
+          [ngClass]="{
+            'alert-danger': rezultatas >= 100,
+            'alert-warning': rezultatas >= 80 && rezultatas < 100
+          }"
+        >
+          Talpa bus uzpildyta: {{ rezultatas.toFixed(2) }}%
+        </div>
+        istoriniai duomenys
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let rezult of rezultatai">{{ rezult }}</li>
+        </ul>
+
+      </div>
+    </div>
+
+    <ng-template #instrukcijos>
+      <div class="card">
+        <div class="card-header">Instrukcijos</div>
+        <div class="card-body">
+          Iveskite talpa litrais, kokiu greiciu ir kiek valandu bus pildoma
+          talpa. Spauskite 'Skaiciuoti'
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
